@@ -1,5 +1,5 @@
 import socket
-#import msvcrt
+
 import sys
 
 if sys.platform[:3] == 'win':

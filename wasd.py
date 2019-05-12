@@ -3,12 +3,16 @@ import serial
 #from serial import Serial
 from time import sleep
 import msvcrt
+import serial.tools.list_ports
 
 #mettere il codice 12 cifre
 #com=input("Inserire numero com")
 #com="COM"+str(com)
-ard=serial.Serial("COM5",9600)
-ard.write("090090090170")
+ports = serial.tools.list_ports.comports()
+for port, desc, hwid in sorted(ports):
+	print("PORTA=", str(port))
+	ard=serial.Serial(port,9600)
+	ard.write("090090090170")
 
 tasto='g'
 
@@ -32,7 +36,7 @@ while 1:
 			ang2=0
 		print(ang2)
 	elif tasto=='a':
-		ang1=int(ang1)-5
+		ang1=int(ang1)+5
 		if ang1>180:
 			ang1=180
 		elif ang1<0:
@@ -60,7 +64,7 @@ while 1:
 			ang2=0
 		print(ang2)
 	elif tasto=='d':
-		ang1=int(ang1)+5
+		ang1=int(ang1)-5
 		if ang1>180:
 			ang1=180
 		elif ang1<0:
